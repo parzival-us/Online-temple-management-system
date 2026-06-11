@@ -11,7 +11,7 @@ export default function PrasadBooking() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://127.0.0.1:5000/api/prasad/', 
+      await axios.post((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/prasad/', 
         { address }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

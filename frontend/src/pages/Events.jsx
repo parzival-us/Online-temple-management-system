@@ -10,7 +10,7 @@ export default function Events() {
   const [date, setDate] = useState('');
 
   const fetchEvents = () => {
-    axios.get('http://127.0.0.1:5000/api/events/')
+    axios.get((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/events/')
       .then(res => setEvents(res.data))
       .catch(console.error);
   };
@@ -23,7 +23,7 @@ export default function Events() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://127.0.0.1:5000/api/events/', 
+      await axios.post((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/events/', 
         { title, description, date: new Date(date).toISOString() },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -39,7 +39,7 @@ export default function Events() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://127.0.0.1:5000/api/events/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/events/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchEvents();

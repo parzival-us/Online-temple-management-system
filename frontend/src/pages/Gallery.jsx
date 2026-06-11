@@ -6,7 +6,7 @@ export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/api/gallery/')
+    axios.get((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/gallery/')
       .then(res => setImages(res.data))
       .catch(err => console.error("Failed to load gallery", err));
   }, []);

@@ -13,7 +13,7 @@ export default function ResetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:5000/api/auth/reset-password', { token, password });
+      await axios.post((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/auth/reset-password', { token, password });
       setMessage('Password reset successfully. You can now login.');
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {

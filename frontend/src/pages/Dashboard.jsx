@@ -14,7 +14,7 @@ export default function Dashboard() {
     if (user?.role === 'admin') {
       const fetchStats = () => {
         const token = localStorage.getItem('token');
-        axios.get('http://127.0.0.1:5000/api/admin/stats', {
+        axios.get((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/admin/stats', {
           headers: { Authorization: `Bearer ${token}` }
         }).then(res => setStats(res.data)).catch(console.error);
       };

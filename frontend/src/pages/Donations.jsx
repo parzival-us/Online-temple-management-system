@@ -21,7 +21,7 @@ export default function Donations() {
   const fetchDonations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://127.0.0.1:5000/api/donations/', {
+      const res = await axios.get((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/donations/', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDonations(res.data);
@@ -43,7 +43,7 @@ export default function Donations() {
   const handleConfirmDonation = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://127.0.0.1:5000/api/donations/', 
+      await axios.post((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/donations/', 
         { amount, category },
         { headers: { Authorization: `Bearer ${token}` } }
       );

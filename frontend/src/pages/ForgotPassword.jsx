@@ -9,7 +9,7 @@ export default function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:5000/api/auth/forgot-password', { email });
+      await axios.post((import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000') + '/api/auth/forgot-password', { email });
       setMessage('If an account exists, a reset link will be sent to your email.');
     } catch (err) {
       setMessage('An error occurred. Please try again.');
