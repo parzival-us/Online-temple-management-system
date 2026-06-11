@@ -86,7 +86,7 @@ export default function Dashboard() {
 
           <div className="h-80 w-full mt-4">
             <h4 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-200">Donation Trends</h4>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
