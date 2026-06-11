@@ -8,8 +8,11 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'my-super-secret-key-change-in-prod')
     
     # Database
-    # Ensure you create this database in MySQL: CREATE DATABASE temple_db;
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'mysql+pymysql://root:password@localhost/temple_db')
+    db_url = os.getenv('DATABASE_URL', 'sqlite:///temple.db')
+    if db_url.startswith("postgres://"):
+        db_url = db_url.replace("postgres://", "postgresql://", 1)
+        
+    SQLALCHEMY_DATABASE_URI = db_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # JWT Auth
