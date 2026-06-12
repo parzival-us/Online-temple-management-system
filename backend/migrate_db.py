@@ -13,7 +13,7 @@ try:
         
         # Seed Admin User
         from app import db
-        from app.models.user import User
+        from app.models import User
         from werkzeug.security import generate_password_hash
         
         admin = User.query.filter_by(email='admin@temple.com').first()
