@@ -81,7 +81,9 @@ def forgot_password():
         Config.SECRET_KEY, algorithm='HS256'
     )
     
-    reset_link = f"http://localhost:5173/reset-password?token={token}"
+    import os
+    frontend_url = request.headers.get('Origin') or os.getenv('FRONTEND_URL', 'http://localhost:5173')
+    reset_link = f"{frontend_url}/reset-password?token={token}"
     send_email(user.email, "Password Reset Request", f"Click here to reset your password: {reset_link}")
 
     return jsonify({"msg": "If an account exists, a reset link will be sent."}), 200
