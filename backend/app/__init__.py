@@ -39,4 +39,8 @@ def create_app(config_class=Config):
     app.register_blueprint(gallery_bp, url_prefix='/api/gallery')
     app.register_blueprint(chat_bp, url_prefix='/api/chat')
 
+    @app.route('/')
+    def index():
+        return {"status": "success", "message": "Online Temple Management API is running perfectly!"}, 200
+
     return app
